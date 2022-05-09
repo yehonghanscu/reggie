@@ -1,0 +1,58 @@
+server:
+  port: 80
+spring:
+  application:
+    #应用名称
+    name: reggie
+
+    #数据库连接池
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-bp1645nmmp7uxf5uoso.mysql.rds.aliyuncs.com:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: yhh
+    password: 0028YHHyhh
+
+  #redis优化缓存
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+  #spring cache整合redis设置缓存失效时间30分钟
+  cache:
+    redis:
+      time-to-live: 1800000
+
+  #qq邮箱发送验证码
+  mail:
+    # 配置 SMTP 服务器地址
+    host: smtp.qq.com
+    # 发送者邮箱
+    username: 3244745586@qq.com
+    # 配置密码，注意不是真正的密码，而是刚刚申请到的授权码
+    password: vvkemynowuphchdf
+    # 端口号465或587
+    port: 587
+    # 默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+    # 配置SSL 加密工厂
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+        debug: true
+
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+#图片存储地址
+reggie:
+  path: D:\reggie\img\
+
